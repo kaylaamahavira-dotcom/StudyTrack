@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dashboard - StudyTrack</title>
+    <!-- Favicon Logo StudyTrack -->
+    <link rel="icon" type="image/png" href="../assets/img/logo.png" />
+    <!-- Global Base Stylesheet & Stylesheet Khusus Dashboard -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <!-- Kontainer Aplikasi Utama -->
+    <div id="app">
+      <!-- Sidebar Navigasi Utama (Di-render otomatis oleh common.js) -->
+      <aside id="side"></aside>
+
+      <!-- Area Konten Utama -->
+      <main>
+        <!-- Header Atas: Menampilkan salam dinamis dan deskripsi halaman -->
+        <div
+          id="top"
+          data-title="Selamat Datang"
+          data-sub="Prioritaskan tugas belajar anda dengan efisien"
+        ></div>
+
+        <!-- ========================================== -->
+        <!-- 1. KARTU STATISTIK RINGKASAN (CARDS)       -->
+        <!-- ========================================== -->
+        <section class="cards">
+          <!-- Kartu 1: Jumlah tugas aktif yang belum selesai -->
+          <div class="card">
+            <i data-ic="clock"></i>
+            <b>Tugas Aktif</b>
+            <h3 id="sActive">0</h3>
+            <small>Perlu segera diselesaikan</small>
+          </div>
+
+          <!-- Kartu 2: Deadline tugas terdekat beserta judul tugasnya -->
+          <div class="card">
+            <i data-ic="alarm"></i>
+            <b>Deadline Terdekat</b>
+            <h3 id="sNext">-</h3>
+            <small id="sNextSub">Tidak ada tugas</small>
+          </div>
+
+          <!-- Kartu 3: Persentase progress penyelesaian tugas -->
+          <div class="card">
+            <i data-ic="check"></i>
+            <b>Tugas Selesai</b>
+            <h3 id="sProg">0%</h3>
+            <div class="bar"><span id="sBar"></span></div>
+          </div>
+
+          <!-- Kartu 4: Akumulasi jam belajar yang sudah tercapai hari ini -->
+          <div class="card">
+            <i data-ic="flame"></i>
+            <b>Target Belajar</b>
+            <h3 id="sStudy">0 jam</h3>
+            <small id="sStudySub">Selesai dari rencana harian</small>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 2. GRID 2 KOLOM (PRIORITAS & RENCANA)       -->
+        <!-- ========================================== -->
+        <section class="two">
+          <!-- Kolom Kiri: Daftar Tugas Prioritas Hari Ini -->
+          <div class="panel">
+            <div class="row">
+              <h2>Prioritas Hari Ini</h2>
+              <!-- Pintasan menuju halaman manajemen tugas lengkap -->
+              <a href="../tasks/tasks.html">Lihat Semua →</a>
+            </div>
+            <p>Prioritas daftar tugas yang harus diprioritaskan</p>
+            
+            <!-- Filter Kategori Tugas: Semua, Mendesak (<= 3 hari), Prioritas Tinggi -->
+            <div class="pills" id="filters">
+              <button data-f="all" class="on" type="button">Semua</button>
+              <button data-f="urgent" type="button">Mendesak (≤ 3 hari)</button>
+              <button data-f="high" type="button">Prioritas Tinggi</button>
+            </div>
+            <!-- Wadah render daftar list tugas prioritas -->
+            <div class="inner" id="list"></div>
+          </div>
+
+          <!-- Kolom Kanan: Rencana & Target Belajar Harian -->
+          <div class="panel side">
+            <div class="row">
+              <h2>Rencana Harian</h2>
+              <span class="tag" id="planCount">0 dari 0 Selesai</span>
+            </div>
+            <p>Masukan rencana belajar anda hari ini</p>
+            
+            <!-- Form Input Rencana Belajar Baru -->
+            <div class="inner">
+              <input id="pName" placeholder="Nama materi/ matakuliah" />
+              <div class="row">
+                <input id="pMin" type="number" min="1" placeholder="Durasi (menit)" />
+                <button class="btn" id="pAdd" type="button">+ Tambah</button>
+              </div>
+              <!-- Tombol Cepat Pilihan Preset Menit Belajar -->
+              <div class="presets">
+                Preset:
+                <button type="button">15</button>
+                <button type="button">30</button>
+                <button type="button">45</button>
+                <button type="button">60</button>
+                <button type="button">90</button>
+              </div>
+            </div>
+            <!-- Wadah render checklist rencana belajar harian -->
+            <div id="plans"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Script HTTP Client, Core Framework & Controller Dashboard -->
+    <script src="../js/api.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

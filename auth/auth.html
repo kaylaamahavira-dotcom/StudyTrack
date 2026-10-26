@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>StudyTrack - Masuk</title>
+    <!-- Favicon Logo StudyTrack -->
+    <link rel="icon" type="image/png" href="../assets/img/logo.png" />
+    <!-- Stylesheet khusus halaman autentikasi (login, register, reset password) -->
+    <link rel="stylesheet" href="auth.css" />
+  </head>
+  <body>
+    <!-- Kontainer utama form autentikasi (Card Split dengan Overlay Animasi) -->
+    <div class="box" id="box">
+      
+      <!-- ========================================== -->
+      <!-- 1. FORM LOGIN / SIGN IN                    -->
+      <!-- ========================================== -->
+      <form class="pane login" id="fLogin">
+        <h1>Sign In</h1>
+        <p>Gunakan username dan password untuk melakukan login</p>
+        <input name="u" placeholder="Username" required autocomplete="username" />
+        <input name="p" type="password" placeholder="Password" required autocomplete="current-password" />
+        <!-- Tautan beralih ke form Lupa Password -->
+        <a href="#" id="toReset">Lupa Password?</a>
+        <button class="btn" type="submit">Sign In</button>
+        <!-- Tempat menampilkan pesan status error / sukses -->
+        <em class="msg"></em>
+      </form>
+
+      <!-- ========================================== -->
+      <!-- 2. FORM RESET PASSWORD                     -->
+      <!-- ========================================== -->
+      <form class="pane login hide" id="fReset">
+        <h1>Reset Password</h1>
+        <p>Silahkan memasukan password baru untuk mengakses akun anda</p>
+        <input name="u" placeholder="Username" required />
+        <input name="e" type="email" placeholder="Email terdaftar" required />
+        <input name="p" type="password" placeholder="Password baru" required autocomplete="new-password" />
+        <button class="btn" type="submit">Simpan Password</button>
+        <!-- Tautan kembali ke form Sign In -->
+        <a href="#" id="toLogin">Kembali ke Sign In</a>
+        <!-- Tempat menampilkan pesan status error / sukses -->
+        <em class="msg"></em>
+      </form>
+
+      <!-- ========================================== -->
+      <!-- 3. FORM REGISTRASI / BUAT AKUN             -->
+      <!-- ========================================== -->
+      <form class="pane reg" id="fReg">
+        <h1>Buat Akun</h1>
+        <p>Silahkan membuat akun dengan mengisi data diri anda</p>
+        <input name="u" placeholder="Username" required autocomplete="username" />
+        <input name="e" type="email" placeholder="Email" required autocomplete="email" />
+        <input name="p" type="password" placeholder="Password" required autocomplete="new-password" />
+        <input name="t" placeholder="Nomor Telepon" />
+        <button class="btn" type="submit">Sign Up</button>
+        <!-- Tempat menampilkan pesan status error / sukses -->
+        <em class="msg"></em>
+      </form>
+
+      <!-- ========================================== -->
+      <!-- 4. OVERLAY PANEL GESER (SLIDING OVERLAY)    -->
+      <!-- Panel animasi yang bergeser ke kiri/kanan  -->
+      <!-- ========================================== -->
+      <div class="overlay">
+        <!-- Panel Overlay Kiri (Tampil saat di halaman Login) -->
+        <div class="ov ovL">
+          <h2>Halo, Teman!</h2>
+          <p>Sebelum memulai, silakan buat akun jika belum memilikinya</p>
+          <p>
+            Ketuk button dibawah ini untuk membuat akun anda
+            <svg
+              viewBox="0 0 24 24"
+              width="1em"
+              height="1em"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="vertical-align: -2px"
+            >
+              <path d="M12 4v16M6 14l6 6 6-6" />
+            </svg>
+          </p>
+          <button class="btn line" id="goReg" type="button">Sign Up</button>
+        </div>
+
+        <!-- Panel Overlay Kanan (Tampil saat di halaman Registrasi) -->
+        <div class="ov ovR">
+          <h2>Selamat Datang, Kembali!</h2>
+          <p>Untuk menikmati Website kami, silakan masuk sesuai dengan data pribadi Anda</p>
+          <p>
+            Ketuk button dibawah ini untuk masuk ke akun anda
+            <svg
+              viewBox="0 0 24 24"
+              width="1em"
+              height="1em"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="vertical-align: -2px"
+            >
+              <path d="M12 4v16M6 14l6 6 6-6" />
+            </svg>
+          </p>
+          <button class="btn line" id="goLogin" type="button">Sign In</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script HTTP Client API & Logika Autentikasi -->
+    <script src="../js/api.js"></script>
+    <script src="auth.js"></script>
+  </body>
+</html>

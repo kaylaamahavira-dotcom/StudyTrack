@@ -1,0 +1,178 @@
+/* ==========================================================================
+   StudyTrack - Fitur Kalender (fitur/calendar/calendar.css)
+   Khusus fitur Kalender: Layout, Navigasi Bulan, Grid 7 Hari,
+   Titik Indikator Deadline, dan Panel Daftar Tugas Harian.
+   ========================================================================== */
+
+/* Layout 2 Kolom: Kalender (Kiri) dan Daftar Rincian Tugas Harian (Kanan) */
+.two.cal {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 26px;
+  align-items: start;
+}
+
+/* Panel Kontainer Kalender & Detail */
+.panel {
+  background: #c7d9e5;
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel.side {
+  align-self: start;
+}
+
+/* Baris Header Kontrol Bulan (Tombol Prev, Judul Bulan, Tombol Next) */
+.cal .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cal .row h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #2e4057;
+  font-weight: 700;
+}
+
+/* Tombol Panah Bulan (Ukuran Presisi) */
+.cal .row .btn.sm {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Grid Matriks 7 Kolom (Min s/d Sab) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  text-align: center;
+}
+
+/* Label Nama Hari (Min, Sen, Sel, dst) */
+.grid .dn {
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 0;
+  color: #2e4057;
+}
+
+/* Kotak Tombol Tanggal */
+.day {
+  background: #f4efea;
+  border-radius: 8px;
+  min-height: 64px;
+  padding: 8px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  border: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: #2e4057;
+  transition: background 0.15s ease, transform 0.08s ease;
+}
+
+.day:hover {
+  background: #e2dcd6;
+}
+
+/* Status Tanggal yang Sedang Terpilih */
+.day.sel {
+  background: #5a7d94;
+  color: #fff;
+}
+
+/* Sorotan Outline untuk Tanggal Hari Ini */
+.day.today {
+  outline: 2px solid #2e4057;
+}
+
+/* Titik Merah Penanda Adanya Deadline Tugas Aktif pada Tanggal Tersebut */
+.day .dot {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e03e3e;
+}
+
+/* Warna titik berubah menjadi putih jika kartu tanggal sedang dipilih */
+.day.sel .dot {
+  background: #fff;
+}
+
+/* Judul Panel Detail Tanggal */
+#dayTitle {
+  font-size: 18px;
+  margin: 0;
+  color: #2e4057;
+}
+
+#dayList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Card Rincian Tugas pada Tanggal Terpilih */
+.ev {
+  background: #5a7d94;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ev small {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: #c7d9e5;
+}
+
+/* Teks Status Kosong saat tidak ada tugas di tanggal tersebut */
+.empty {
+  text-align: center;
+  font-size: 13px;
+  color: #3d5568;
+  padding: 20px 10px;
+}
+
+/* Responsif: Menyesuaikan kalender pada layar tablet & mobile */
+@media (max-width: 900px) {
+  .two.cal {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .day {
+    min-height: 48px;
+    padding: 4px;
+    font-size: 12px;
+  }
+  .grid {
+    gap: 4px;
+  }
+}

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Statistik - StudyTrack</title>
+    <!-- Favicon Logo StudyTrack -->
+    <link rel="icon" type="image/png" href="../assets/img/logo.png" />
+    <!-- Global Base Stylesheet & Stylesheet Khusus Fitur Statistik -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="stats.css" />
+  </head>
+  <body>
+    <!-- Kontainer Aplikasi Utama -->
+    <div id="app">
+      <!-- Sidebar Navigasi Utama (Di-render otomatis oleh common.js) -->
+      <aside id="side"></aside>
+
+      <!-- Area Konten Utama -->
+      <main>
+        <!-- Header Atas Halaman Statistik -->
+        <div
+          id="top"
+          data-title="Statistik"
+          data-sub="Pantau progres tugas anda menggunakan chart yang tersedia pada web ini"
+        ></div>
+
+        <!-- ========================================== -->
+        <!-- 1. KARTU STATISTIK RINGKASAN               -->
+        <!-- ========================================== -->
+        <section class="cards">
+          <!-- Total akumulasi semua tugas -->
+          <div class="card">
+            <i data-ic="file"></i>
+            <b>Total Tugas</b>
+            <h3 id="sTotal">0</h3>
+            <small>Total semua tugas anda</small>
+          </div>
+
+          <!-- Tugas yang masih berstatus belum selesai -->
+          <div class="card">
+            <i data-ic="clock"></i>
+            <b>Belum Selesai</b>
+            <h3 id="sOpen">0</h3>
+            <small>Tugas yang belum diselsaikan</small>
+          </div>
+
+          <!-- Tugas yang sudah diselesaikan -->
+          <div class="card">
+            <i data-ic="check"></i>
+            <b>Sudah Selesai</b>
+            <h3 id="sDone">0</h3>
+            <small>Tugas yang sudah diselesaikan</small>
+          </div>
+
+          <!-- Total jam belajar yang tercatat dalam 7 hari terakhir -->
+          <div class="card">
+            <i data-ic="alarm"></i>
+            <b>Jam Belajar Minggu Ini</b>
+            <h3 id="sHours">0 Jam</h3>
+            <small>Dari aktivitas rencana harian</small>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 2. VISUALISASI GRAFIK & DIAGRAM (CHARTS)    -->
+        <!-- ========================================== -->
+        <section class="two">
+          <!-- Kolom Kiri: Diagram Batang (Bar Chart) Jam Belajar 7 Hari Terakhir -->
+          <div class="panel">
+            <h2 class="c">
+              Rata - Rata Jam Belajar
+              <br />
+              Minggu Ini
+            </h2>
+            <div class="chart" id="chart"></div>
+          </div>
+
+          <!-- Kolom Kanan: Diagram Donat (Donut Chart) & Persentase Progres -->
+          <div class="col">
+            <!-- Diagram Donat Komposisi Prioritas Tugas (Tinggi, Sedang, Rendah) -->
+            <div class="panel donutbox">
+              <div class="donut" id="donut"></div>
+              <div id="legend"></div>
+            </div>
+
+            <!-- Panel Persentase Progress Penyelesaian Keseluruhan Tugas -->
+            <div class="panel">
+              <h2>Progres Tugas Selesai</h2>
+              <h1 id="pct">0%</h1>
+              <div class="bar"><span id="pbar"></span></div>
+              <p id="pmsg"></p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Script HTTP Client, Core Framework & Controller Fitur Statistik -->
+    <script src="../js/api.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="stats.js"></script>
+  </body>
+</html>

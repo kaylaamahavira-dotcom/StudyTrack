@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Notifikasi - StudyTrack</title>
+    <!-- Favicon Logo StudyTrack -->
+    <link rel="icon" type="image/png" href="../assets/img/logo.png" />
+    <!-- Global Base Stylesheet & Stylesheet Khusus Fitur Notifikasi -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="notifications.css" />
+  </head>
+  <body>
+    <!-- Kontainer Aplikasi Utama -->
+    <div id="app">
+      <!-- Sidebar Navigasi Utama (Di-render otomatis oleh common.js) -->
+      <aside id="side"></aside>
+
+      <!-- Area Konten Utama -->
+      <main>
+        <!-- Header Atas Halaman Notifikasi -->
+        <div
+          id="top"
+          data-title="Notifikasi"
+          data-sub="Masukan email atau nomor telepon anda untuk mendapatkan notifikasi ketika deadline tugas H-7, H-3 dan H-1 pengumpulan"
+        ></div>
+
+        <!-- ========================================== -->
+        <!-- AREA 2 KOLOM (PENGATURAN & LOG SIMULASI)   -->
+        <!-- ========================================== -->
+        <section class="two">
+          <!-- Kolom Kiri: Panel Pengaturan Channel & Frekuensi Pengingat -->
+          <div class="panel">
+            <h2>Pengaturan Channel</h2>
+            
+            <!-- Saluran 1: Pengingat Lewat Email -->
+            <div class="chan">
+              <i data-ic="mail"></i>
+              <div>
+                <b>Email</b>
+                <p>Notifikasi akan langsung dikirim ke alamat email kamu</p>
+              </div>
+              <!-- Toggle switch aktifkan notifikasi email -->
+              <label class="sw">
+                <input type="checkbox" id="onMail" />
+                <span></span>
+              </label>
+            </div>
+            <input id="mail" type="email" placeholder="Email" />
+
+            <!-- Saluran 2: Pengingat Lewat WhatsApp -->
+            <div class="chan">
+              <i data-ic="chat"></i>
+              <div>
+                <b>WhatsApp</b>
+                <p>Notifikasi akan langsung dikirim ke nomor handphone kamu</p>
+              </div>
+              <!-- Toggle switch aktifkan notifikasi WhatsApp -->
+              <label class="sw">
+                <input type="checkbox" id="onWa" />
+                <span></span>
+              </label>
+            </div>
+            <input id="wa" placeholder="Nomor Telepon" />
+
+            <!-- Pilihan Frekuensi Waktu Pengingat Sebelum Deadline -->
+            <b>Waktu Pengingat</b>
+            <label class="ck">
+              <input type="checkbox" class="rem" value="7" />
+              H-7 (7 Hari Sebelum Deadline)
+            </label>
+            <label class="ck">
+              <input type="checkbox" class="rem" value="3" />
+              H-3 (3 Hari Sebelum Deadline)
+            </label>
+            <label class="ck">
+              <input type="checkbox" class="rem" value="1" />
+              H-1 (1 Hari Sebelum Deadline)
+            </label>
+
+            <!-- Tombol Simpan Konfigurasi Notifikasi -->
+            <button class="btn" id="save" type="button">Simpan Pengaturan</button>
+          </div>
+
+          <!-- Kolom Kanan: Log Riwayat Simulasi Pengiriman Notifikasi -->
+          <div class="panel">
+            <h2>Log Notifikasi</h2>
+            <p>
+              Simulasi pengiriman berdasarkan tugas yang deadline-nya jatuh pada H-7, H-3 atau H-1
+              dari hari ini.
+            </p>
+            <!-- Wadah render pesan simulasi notifikasi yang terkirim -->
+            <div class="inner" id="log"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Script HTTP Client, Core Framework & Controller Fitur Notifikasi -->
+    <script src="../js/api.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="notifications.js"></script>
+  </body>
+</html>

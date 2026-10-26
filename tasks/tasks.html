@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Daftar Tugas - StudyTrack</title>
+    <!-- Favicon Logo StudyTrack -->
+    <link rel="icon" type="image/png" href="../assets/img/logo.png" />
+    <!-- Global Base Stylesheet & Stylesheet Khusus Fitur Tasks -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="tasks.css" />
+  </head>
+  <body>
+    <!-- Kontainer Aplikasi Utama -->
+    <div id="app">
+      <!-- Sidebar Navigasi Utama (Di-render otomatis oleh common.js) -->
+      <aside id="side"></aside>
+
+      <!-- Area Konten Utama -->
+      <main>
+        <!-- Header Atas Halaman Tugas -->
+        <div
+          id="top"
+          data-title="Daftar Tugas"
+          data-sub="Kelola tugas kuliah, tandai selesai, dan atur prioritas"
+        ></div>
+
+        <!-- ========================================== -->
+        <!-- 1. KARTU STATISTIK TUGAS (CARDS)           -->
+        <!-- ========================================== -->
+        <section class="cards">
+          <!-- Total semua tugas -->
+          <div class="card">
+            <i data-ic="list"></i>
+            <b>Total Tugas</b>
+            <h3 id="tTotal">0</h3>
+            <small>Semua tugas yang tercatat</small>
+          </div>
+
+          <!-- Tugas yang masih berstatus belum selesai -->
+          <div class="card">
+            <i data-ic="clock"></i>
+            <b>Tugas Aktif</b>
+            <h3 id="tOpen">0</h3>
+            <small>Menunggu diselesaikan</small>
+          </div>
+
+          <!-- Tugas yang sudah diselesaikan -->
+          <div class="card">
+            <i data-ic="check"></i>
+            <b>Selesai</b>
+            <h3 id="tDone">0</h3>
+            <small>Tugas telah diselesaikan</small>
+          </div>
+
+          <!-- Tugas aktif yang telah melewati tanggal deadline -->
+          <div class="card">
+            <i data-ic="alarm"></i>
+            <b>Terlambat</b>
+            <h3 id="tLate">0</h3>
+            <small>Melewati tanggal deadline</small>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 2. TOOLBAR PENCARIAN, FILTER & TAMBAH      -->
+        <!-- ========================================== -->
+        <section class="toolbar">
+          <!-- Filter Kategori Status & Prioritas Tugas -->
+          <div class="pills" id="filters">
+            <button data-f="all" class="on" type="button">Semua</button>
+            <button data-f="open" type="button">Belum Selesai</button>
+            <button data-f="done" type="button">Selesai</button>
+            <button data-f="Tinggi" type="button">Prioritas Tinggi</button>
+          </div>
+          <!-- Kolom Input Pencarian Tugas berdasarkan nama/matakuliah -->
+          <input class="search" id="q" placeholder="Cari nama atau matakuliah..." />
+          <!-- Tombol Membuka Modal Tambah Tugas Baru -->
+          <button class="btn" id="newBtn" type="button">+ Tambah Tugas</button>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 3. AREA DAFTAR TUGAS & PANEL FORM EDIT     -->
+        <!-- ========================================== -->
+        <section class="tk-layout" id="layout">
+          <!-- Wadah render kartu-kartu item tugas -->
+          <div id="list"></div>
+
+          <!-- Panel Form Edit Tugas Samping (Slide/Pop-in saat tugas diklik Edit) -->
+          <form class="panel formp" id="editForm">
+            <div class="row">
+              <h2 id="fTitle">Edit Tugas</h2>
+              <button type="button" class="btn sm ghost" id="fClose">Tutup</button>
+            </div>
+            <label>
+              Nama Tugas
+              <input name="n" required />
+            </label>
+            <label>
+              Mata Kuliah
+              <input name="c" required />
+            </label>
+            <div class="row2">
+              <label>
+                Deadline
+                <input name="d" type="date" required />
+              </label>
+              <!-- Prioritas dihitung otomatis dari tanggal deadline (Readonly) -->
+              <label>
+                Prioritas
+                <input name="p" readonly style="background:#e9eef2;cursor:not-allowed;font-weight:600;color:#2e4057" />
+              </label>
+            </div>
+            <label>
+              Catatan
+              <textarea name="m" rows="3"></textarea>
+            </label>
+            <button class="btn" style="margin-top:6px" type="submit">Simpan Perubahan</button>
+          </form>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 4. MODAL POPUP TAMBAH TUGAS BARU           -->
+        <!-- ========================================== -->
+        <div class="modal" id="modal" hidden>
+          <form id="newForm">
+            <h1>Tambah Tugas</h1>
+            <label>
+              Nama Tugas
+              <input name="n" placeholder="Contoh: Makalah Pancasila" required />
+            </label>
+            <label>
+              Mata Kuliah
+              <input name="c" placeholder="Contoh: MPK" required />
+            </label>
+            <div class="row2">
+              <label>
+                Deadline
+                <input name="d" type="date" required />
+              </label>
+              <!-- Prioritas dihitung otomatis dari tanggal deadline (Readonly) -->
+              <label>
+                Prioritas
+                <input name="p" readonly style="background:#e9eef2;cursor:not-allowed;font-weight:600;color:#2e4057" value="Tinggi" />
+              </label>
+            </div>
+            <label>
+              Catatan
+              <textarea name="m" rows="3" placeholder="Opsional"></textarea>
+            </label>
+            <div class="row" style="margin-top:10px">
+              <button type="button" class="btn ghost" id="modalClose">Batal</button>
+              <button class="btn" type="submit">Tambah Tugas</button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <!-- Script HTTP Client, Core Framework & Controller Fitur Tugas -->
+    <script src="../js/api.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="tasks.js"></script>
+  </body>
+</html>

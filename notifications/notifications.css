@@ -1,0 +1,200 @@
+/* ==========================================================================
+   StudyTrack - Fitur Notifications (fitur/notifications/notifications.css)
+   Khusus fitur Notifikasi: Pengaturan Channel (Email & WhatsApp),
+   Toggle Switch, Checkbox Pengingat, dan Log Notifikasi.
+   ========================================================================== */
+
+/* Layout 2 Kolom: Pengaturan Saluran (Kiri) dan Log Notifikasi (Kanan) */
+.two {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 26px;
+  align-items: start;
+}
+
+/* Panel Kontainer Form Pengaturan & Log */
+.panel {
+  background: #c7d9e5;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #2e4057;
+}
+
+.panel p {
+  margin: 0;
+  font-size: 12px;
+  color: #3d5568;
+}
+
+/* --- Baris Saluran Notifikasi (Email / WhatsApp) --- */
+.chan {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #f4efea;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+/* Icon bundar saluran komunikasi */
+.chan i {
+  color: #fff;
+  background: #5a7d94;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chan div {
+  flex: 1;
+  min-width: 0;
+}
+
+.chan div b {
+  display: block;
+  font-size: 14px;
+  color: #2e4057;
+}
+
+.chan div p {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: #555;
+}
+
+/* --- Toggle Switch (Sakelar On/Off Modern) --- */
+.sw {
+  position: relative;
+  width: 38px;
+  height: 20px;
+  flex: none;
+  cursor: pointer;
+}
+
+.sw input {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+/* Latar belakang sakelar */
+.sw span {
+  position: absolute;
+  inset: 0;
+  background: #dcd6cf;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+/* Knop bundar sakelar */
+.sw span:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2e4057;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+/* Status saat sakelar diaktifkan (Checked) */
+.sw input:checked + span {
+  background: #5a7d94;
+}
+
+.sw input:checked + span:after {
+  transform: translateX(18px);
+  background: #fff;
+}
+
+/* --- Checkbox Pilihan Waktu Pengingat (H-7, H-3, H-1) --- */
+.ck {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2e4057;
+  cursor: pointer;
+}
+
+.ck input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Tombol Simpan Pengaturan */
+#save {
+  height: 38px;
+  line-height: 1;
+  margin-top: 6px;
+}
+
+/* --- Log Simulasi Notifikasi Terkirim --- */
+.inner {
+  background: #f4efea;
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 140px;
+}
+
+/* Card item log notifikasi */
+#log .item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #c7d9e5;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+#log .item .n {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Status Kosong Log */
+.empty {
+  margin: auto;
+  text-align: center;
+  font-size: 13px;
+  color: #3d5568;
+  padding: 20px 0;
+}
+
+/* Responsif: Menyesuaikan tata letak pada layar tablet & mobile */
+@media (max-width: 900px) {
+  .two {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Kalender - StudyTrack</title>
+    <!-- Favicon Logo StudyTrack -->
+    <link rel="icon" type="image/png" href="../assets/img/logo.png" />
+    <!-- Global Base Stylesheet & Stylesheet Khusus Fitur Kalender -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="calendar.css" />
+  </head>
+  <body>
+    <!-- Kontainer Aplikasi Utama -->
+    <div id="app">
+      <!-- Sidebar Navigasi Utama (Di-render otomatis oleh common.js) -->
+      <aside id="side"></aside>
+
+      <!-- Area Konten Utama -->
+      <main>
+        <!-- Header Atas Halaman Kalender -->
+        <div
+          id="top"
+          data-title="Kalender"
+          data-sub="Seluruh daftar tugas anda akan muncul berdasarkan bulan"
+        ></div>
+
+        <!-- ========================================== -->
+        <!-- AREA KALENDER 2 KOLOM (GRID & DETAIL HARI) -->
+        <!-- ========================================== -->
+        <section class="two cal">
+          <!-- Kolom Kiri: Tampilan Grid Kalender Bulanan -->
+          <div class="panel">
+            <!-- Navigasi Pengubah Bulan (Prev, Nama Bulan/Tahun, Next) -->
+            <div class="row">
+              <button class="btn sm" id="prev" type="button">←</button>
+              <h2 id="month"></h2>
+              <button class="btn sm" id="next" type="button">→</button>
+            </div>
+            <!-- Wadah render matriks tanggal dan penanda tugas -->
+            <div class="grid" id="grid"></div>
+          </div>
+
+          <!-- Kolom Kanan: Rincian Daftar Tugas pada Tanggal yang Dipilih -->
+          <div class="panel side">
+            <h2 id="dayTitle"></h2>
+            <!-- Wadah list rincian tugas pada tanggal aktif -->
+            <div id="dayList"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Script HTTP Client, Core Framework & Controller Fitur Kalender -->
+    <script src="../js/api.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="calendar.js"></script>
+  </body>
+</html>

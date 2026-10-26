@@ -1,0 +1,255 @@
+/* ==========================================================================
+   StudyTrack - Fitur Auth (fitur/auth/auth.css)
+   Khusus fitur Autentikasi: Login, Register, Lupa Password,
+   Overlay animasi geser, dan Tombol Presisi Tengah.
+   ========================================================================== */
+
+/* Pengaturan box sizing universal agar padding dan border dihitung ke dalam lebar total */
+* {
+  box-sizing: border-box;
+}
+
+/* Base Body: Menempatkan box login presisi di tengah layar (Grid Center) dengan background krem hangat */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #f4efea;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #000;
+  padding: 16px;
+}
+
+/* Wadah Utama Box Auth: Menggunakan pembatas rasio fleksibel, rounded corner, dan drop shadow */
+.box {
+  position: relative;
+  width: min(780px, 94vw);
+  height: 440px;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Panel Form: Mengisi 50% lebar kontainer dengan animasi transisi geser (translateX) */
+.pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  padding: 0 36px;
+  text-align: center;
+  transition:
+    transform 0.6s ease,
+    opacity 0.6s ease;
+}
+
+/* Judul form autentikasi */
+.pane h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #2e4057;
+}
+
+/* Subteks instruksi form */
+.pane p {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+}
+
+/* Styling kolom input form auth */
+.pane input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: #f4efea;
+  font: inherit;
+  font-size: 13px;
+}
+
+/* Status fokus saat input aktif diketik */
+.pane input:focus {
+  outline: 2px solid #2e4057;
+}
+
+/* Tautan teks (Lupa Password & Kembali ke Sign In) */
+.pane a {
+  color: #2e4057;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.pane a:hover {
+  text-decoration: underline;
+}
+
+/* Form registrasi default disembunyikan sebelum panel digeser */
+.reg {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Utility class untuk menyembunyikan form (misal saat berganti ke reset password) */
+.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Keadaan Aktif: Geser form login ke kanan & sembunyikan */
+.box.active .login {
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Keadaan Aktif: Geser form register ke sisi kanan & aktifkan */
+.box.active .reg {
+  transform: translateX(100%);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 5;
+}
+
+/* Overlay Panel Biru Geser: Elemen dekoratif animasi pembatas sisi */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 3;
+  transition:
+    transform 0.6s ease,
+    border-radius 0.6s ease;
+  border-radius: 90px 0 0 0;
+  background: #2e4057;
+  color: #fff;
+}
+
+/* Keadaan Aktif: Overlay bergeser ke sisi kiri */
+.box.active .overlay {
+  transform: translateX(-100%);
+  border-radius: 0 90px 0 0;
+}
+
+/* Isi konten di dalam overlay panel */
+.ov {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 0 36px;
+  text-align: center;
+  transition: opacity 0.4s;
+}
+
+.ov h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.ov p {
+  margin: 0;
+  font-size: 13px;
+  color: #c7d9e5;
+}
+
+/* Panel overlay kanan (default disembunyikan saat posisi login) */
+.ovR {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Saat aktif, sembunyikan overlay kiri dan munculkan overlay kanan */
+.box.active .ovL {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.box.active .ovR {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Tombol Utama Auth: Presisi Tengah Vertikal & Horizontal */
+.btn {
+  background: #2e4057;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 34px;
+  height: 38px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1;
+  font-size: 13px;
+  transition:
+    background 0.15s ease,
+    transform 0.08s ease;
+}
+
+.btn:hover {
+  background: #1d2a3a;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Tombol bergaris luar (outline) khusus di panel overlay biru */
+.btn.line {
+  background: none;
+  border: 1px solid #fff;
+}
+
+.btn.line:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Label status pesan validasi / response API */
+.msg {
+  font-size: 12px;
+  color: #c0392b;
+  font-style: normal;
+  min-height: 14px;
+}
+
+/* Status pesan berhasil */
+.msg.ok {
+  color: #2e7d4f;
+}
+
+/* Responsif: Menyesuaikan tata letak pada layar smartphone / mobile */
+@media (max-width: 640px) {
+  .box {
+    height: 520px;
+  }
+  .pane {
+    padding: 0 14px;
+  }
+  .ov {
+    padding: 0 12px;
+  }
+  .pane h1 {
+    font-size: 20px;
+  }
+}
